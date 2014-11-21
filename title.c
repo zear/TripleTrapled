@@ -38,22 +38,6 @@ void titleLoad()
 	toHiscoreTimer = 600;
 	score = 0;
 	clearLogo = 0;
-	int i;
-
-	for(i = 0; logo[i]; ++i)
-	{
-		if(logo[i] != ' ' && logo[i] != '\n')
-		{
-			logo[i] = '?';
-		}
-	}
-	for(i = 0; logo2[i]; ++i)
-	{
-		if(logo2[i] != ' ' && logo2[i] != '\n')
-		{
-			logo2[i] = '?';
-		}
-	}
 }
 
 void titleLogic()
@@ -61,6 +45,26 @@ void titleLogic()
 	if(!toHiscoreTimer-- && !clearLogo)
 	{
 		programStateNew = STATE_HISCORE;
+	}
+
+	if(!(toHiscoreTimer % 15)) // Every 0.25 seconds change the logo colors.
+	{
+		int i;
+
+		for(i = 0; logo[i]; ++i)
+		{
+			if(logo[i] != ' ' && logo[i] != '\n')
+			{
+				logo[i] = '?';
+			}
+		}
+		for(i = 0; logo2[i]; ++i)
+		{
+			if(logo2[i] != ' ' && logo2[i] != '\n')
+			{
+				logo2[i] = '?';
+			}
+		}
 	}
 
 	if(keys[KEY_BACK] && !clearLogo)
