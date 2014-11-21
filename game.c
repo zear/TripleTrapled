@@ -330,8 +330,6 @@ void gameDraw()
 
 	if(pointsStrTimer)
 	{
-		int len = strlen(pointsStr);
-
 		dTextCentered(pointsStr, SCREEN_H - 11, SDL_MapRGB(screen->format, 255, 255, 0));
 		pointsStrTimer--;
 	}
