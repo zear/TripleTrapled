@@ -331,7 +331,8 @@ void boardDraw()
 	{
 		for(i = 0; i < BOARD_WIDTH; i++)
 		{
-			SDL_Rect r = {i*BLOCK_SIZE+boardX, j*BLOCK_SIZE+boardY, BLOCK_SIZE, BLOCK_SIZE};
+			SDL_Rect rOrig = {i*BLOCK_SIZE+boardX, j*BLOCK_SIZE+boardY, BLOCK_SIZE, BLOCK_SIZE};
+			SDL_Rect r = rOrig;
 			int rcolor;
 
 			switch(board[i][j])
@@ -377,10 +378,9 @@ void boardDraw()
 				SDL_FillRect(screen, &r, rcolor);
 			}
 
-			r.x = i*BLOCK_SIZE+boardX;
-			r.y = j*BLOCK_SIZE+boardY;
-			r.w = BLOCK_SIZE;
-			r.h = BLOCK_SIZE;
+			// NOTE: SDL_FillRect() overwrites r.w and r.h values if drawing occurs outside the surface area.
+			// Restore the original r values:
+			r = rOrig;
 
 			if(r.x < 0 || r.x >= SCREEN_W - BLOCK_SIZE || r.y < 0 || r.y >= SCREEN_H - BLOCK_SIZE)
 			{
@@ -395,10 +395,9 @@ void boardDraw()
 
 				SDL_FillRect(screen, &r, rcolor);
 
-				r.x = i*BLOCK_SIZE+boardX;
-				r.y = j*BLOCK_SIZE+boardY;
-				r.w = BLOCK_SIZE;
-				r.h = BLOCK_SIZE;
+				// NOTE: SDL_FillRect() overwrites r.w and r.h values if drawing occurs outside the surface area.
+				// Restore the original r values:
+				r = rOrig;
 
 				if(r.y < 0)
 				{
@@ -411,10 +410,9 @@ void boardDraw()
 
 				SDL_FillRect(screen, &r, rcolor);
 
-				r.x = i*BLOCK_SIZE+boardX;
-				r.y = j*BLOCK_SIZE+boardY;
-				r.w = BLOCK_SIZE;
-				r.h = BLOCK_SIZE;
+				// NOTE: SDL_FillRect() overwrites r.w and r.h values if drawing occurs outside the surface area.
+				// Restore the original r values:
+				r = rOrig;
 
 				if(r.x < 0)
 				{

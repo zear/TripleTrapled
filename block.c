@@ -317,6 +317,7 @@ void blockDrawExplosions()
 			int rcolor;
 			int step = explosionCur->explosion.step;
 			SDL_Rect r;
+			SDL_Rect *rOrig;
 			SDL_Rect left = {(int)explosionCur->explosion.x + step, (int)explosionCur->explosion.y + step, 1, BLOCK_SIZE - step - step};
 			SDL_Rect right = {(int)explosionCur->explosion.x + BLOCK_SIZE - 1 - step, (int)explosionCur->explosion.y + step, 1, BLOCK_SIZE - step - step};
 			SDL_Rect up = {(int)explosionCur->explosion.x + step, (int)explosionCur->explosion.y + step, BLOCK_SIZE - step - step, 1};
@@ -372,33 +373,23 @@ void blockDrawExplosions()
 				switch(i)
 				{
 					case 0:
-						r.x = left.x;
-						r.y = left.y;
-						r.w = left.w;
-						r.h = left.h;
+						rOrig = &left;
 					break;
 					case 1:
-						r.x = right.x;
-						r.y = right.y;
-						r.w = right.w;
-						r.h = right.h;
+						rOrig = &right;
 					break;
 					case 2:
-						r.x = up.x;
-						r.y = up.y;
-						r.w = up.w;
-						r.h = up.h;
+						rOrig = &up;
 					break;
 					case 3:
-						r.x = down.x;
-						r.y = down.y;
-						r.w = down.w;
-						r.h = down.h;
+						rOrig = &down;
 					break;
 
 					default:
 					break;
 				}
+
+				r = *rOrig;
 
 				if(pause)
 				{
@@ -410,36 +401,9 @@ void blockDrawExplosions()
 					SDL_FillRect(screen, &r, rcolor);
 				}
 
-				switch(i)
-				{
-					case 0:
-						r.x = left.x;
-						r.y = left.y;
-						r.w = left.w;
-						r.h = left.h;
-					break;
-					case 1:
-						r.x = right.x;
-						r.y = right.y;
-						r.w = right.w;
-						r.h = right.h;
-					break;
-					case 2:
-						r.x = up.x;
-						r.y = up.y;
-						r.w = up.w;
-						r.h = up.h;
-					break;
-					case 3:
-						r.x = down.x;
-						r.y = down.y;
-						r.w = down.w;
-						r.h = down.h;
-					break;
-
-					default:
-					break;
-				}
+				// NOTE: SDL_FillRect() overwrites r.w and r.h values if drawing occurs outside the surface area.
+				// Restore the original r values:
+				r = *rOrig;
 
 				if(r.x < 0 || r.x >= SCREEN_W - BLOCK_SIZE || r.y < 0 || r.y >= SCREEN_H - BLOCK_SIZE)
 				{
@@ -454,36 +418,9 @@ void blockDrawExplosions()
 
 					SDL_FillRect(screen, &r, rcolor);
 
-				switch(i)
-				{
-					case 0:
-						r.x = left.x;
-						r.y = left.y;
-						r.w = left.w;
-						r.h = left.h;
-					break;
-					case 1:
-						r.x = right.x;
-						r.y = right.y;
-						r.w = right.w;
-						r.h = right.h;
-					break;
-					case 2:
-						r.x = up.x;
-						r.y = up.y;
-						r.w = up.w;
-						r.h = up.h;
-					break;
-					case 3:
-						r.x = down.x;
-						r.y = down.y;
-						r.w = down.w;
-						r.h = down.h;
-					break;
-
-					default:
-					break;
-				}
+					// NOTE: SDL_FillRect() overwrites r.w and r.h values if drawing occurs outside the surface area.
+					// Restore the original r values:
+					r = *rOrig;
 
 					if(r.y < 0)
 					{
@@ -496,36 +433,9 @@ void blockDrawExplosions()
 
 					SDL_FillRect(screen, &r, rcolor);
 
-				switch(i)
-				{
-					case 0:
-						r.x = left.x;
-						r.y = left.y;
-						r.w = left.w;
-						r.h = left.h;
-					break;
-					case 1:
-						r.x = right.x;
-						r.y = right.y;
-						r.w = right.w;
-						r.h = right.h;
-					break;
-					case 2:
-						r.x = up.x;
-						r.y = up.y;
-						r.w = up.w;
-						r.h = up.h;
-					break;
-					case 3:
-						r.x = down.x;
-						r.y = down.y;
-						r.w = down.w;
-						r.h = down.h;
-					break;
-
-					default:
-					break;
-				}
+					// NOTE: SDL_FillRect() overwrites r.w and r.h values if drawing occurs outside the surface area.
+					// Restore the original r values:
+					r = *rOrig;
 
 					if(r.x < 0)
 					{
