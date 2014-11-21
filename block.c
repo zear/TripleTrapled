@@ -54,7 +54,7 @@ BlockNode *blockNodeDelete(BlockNode *head, BlockNode *toDelNode)
 	return head;
 }
 
-BlockNode *blockNodeDeteleAll(BlockNode *head)
+BlockNode *blockNodeDeleteAll(BlockNode *head)
 {
 	BlockNode *toDelNode;
 	BlockNode *curNode = head;
@@ -110,7 +110,7 @@ ExplosionNode *explosionNodeDelete(ExplosionNode *head, ExplosionNode *toDelNode
 	return head;
 }
 
-ExplosionNode *explosionNodeDeteleAll(ExplosionNode *head)
+ExplosionNode *explosionNodeDeleteAll(ExplosionNode *head)
 {
 	ExplosionNode *toDelNode;
 	ExplosionNode *curNode = head;

@@ -73,7 +73,7 @@ void gameLogic()
 
 		if(blockHead)
 		{
-			blockHead = blockNodeDeteleAll(blockHead);
+			blockHead = blockNodeDeleteAll(blockHead);
 		}
 	}
 

@@ -76,10 +76,10 @@ extern float blockSpeed;
 
 BlockNode *blockNodePrepend(BlockNode *head);
 BlockNode *blockNodeDelete(BlockNode *head, BlockNode *toDelNode);
-BlockNode *blockNodeDeteleAll(BlockNode *head);
+BlockNode *blockNodeDeleteAll(BlockNode *head);
 ExplosionNode *explosionNodePrepend(ExplosionNode *head);
 ExplosionNode *explosionNodeDelete(ExplosionNode *head, ExplosionNode *toDelNode);
-ExplosionNode *explosionNodeDeteleAll(ExplosionNode *head);
+ExplosionNode *explosionNodeDeleteAll(ExplosionNode *head);
 void blockCheckCollision(Block *block);
 void blockDrawExplosions();
 void blockDrawBlocks();
