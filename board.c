@@ -19,7 +19,7 @@ int boardVy;
 void boardInit()
 {
 	memset(board, COLOR_NONE, sizeof(board));
-	board[BOARD_WIDTH/2][BOARD_HEIGHT/2] = COLOR_WHITE;
+	board[BOARD_WIDTH/2+1][BOARD_HEIGHT/2+1] = COLOR_WHITE;
 }
 
 int boardInsertElement(int x, int y, Color color)
@@ -48,7 +48,7 @@ int boardInsertElement(int x, int y, Color color)
 		blockCounter--;
 		// Remove bricks that don't make connection
 		memset(marker, 0, sizeof(marker));
-		marker[BOARD_WIDTH/2][BOARD_HEIGHT/2] = 1;
+		marker[BOARD_WIDTH/2+1][BOARD_HEIGHT/2+1] = 1;
 		boardCheckConnection();
 
 		return 0;
@@ -59,9 +59,26 @@ int boardInsertElement(int x, int y, Color color)
 		return 1;
 	}
 
-	if(x < 0 || y < 0 || x >= BOARD_WIDTH || y >= BOARD_HEIGHT)
+/*	if(x < 0 || y < 0 || x >= BOARD_WIDTH || y >= BOARD_HEIGHT)*/
+/*	{*/
+/*		return 1;*/
+/*	}*/
+
+	if(x < 0)
 	{
-		return 1;
+		x = BOARD_WIDTH + x;
+	}
+	else if(x >= BOARD_WIDTH)
+	{
+		x = x - BOARD_WIDTH;
+	}
+	if(y < 0)
+	{
+		y = BOARD_HEIGHT + y;
+	}
+	else if(y >= BOARD_HEIGHT)
+	{
+		y = y - BOARD_HEIGHT;
 	}
 
 	if(board[x][y] != COLOR_NONE)
@@ -208,7 +225,7 @@ void boardClearColor(Color color)
 
 	// Remove bricks that don't make connection
 	memset(marker, 0, sizeof(marker));
-	marker[BOARD_WIDTH/2][BOARD_HEIGHT/2] = 1;
+	marker[BOARD_WIDTH/2+1][BOARD_HEIGHT/2+1] = 1;
 
 	memset(clearedColors, 0, sizeof(clearedColors));
 	boardCheckConnection();
@@ -220,6 +237,7 @@ void boardCheckConnection()
 {
 	int i;
 	int j;
+	int n;
 	int repeat = 1;
 	int remNum = 0;
 
@@ -233,38 +251,50 @@ void boardCheckConnection()
 				if(marker[i][j] == 1)
 				{
 					// N
-					if(j > 0 && board[i][j-1])
+					n = (j > 0) ? j-1 : BOARD_HEIGHT - 1;
+					
+					if(board[i][n])
+					//if(j > 0 && board[i][j-1])
 					{
-						if(!marker[i][j-1])
+						if(!marker[i][n])
 						{
-							marker[i][j-1] = 1;
+							marker[i][n] = 1;
 							repeat = 1;
 						}
 					}
 					// E
-					if(i < BOARD_WIDTH - 1 && board[i+1][j])
+					n = (i < BOARD_WIDTH - 1) ? i+1 : 0;
+
+					if(board[n][j])
+					//if(i < BOARD_WIDTH - 1 && board[i+1][j])
 					{
-						if(!marker[i+1][j])
+						if(!marker[n][j])
 						{
-							marker[i+1][j] = 1;
+							marker[n][j] = 1;
 							repeat = 1;
 						}
 					}
 					// S
-					if(j < BOARD_HEIGHT - 1 && board[i][j+1])
+					n = (j < BOARD_HEIGHT - 1) ? j+1 : 0;
+
+					if(board[i][n])
+					//if(j < BOARD_HEIGHT - 1 && board[i][j+1])
 					{
-						if(!marker[i][j+1])
+						if(!marker[i][n])
 						{
-							marker[i][j+1] = 1;
+							marker[i][n] = 1;
 							repeat = 1;
 						}
 					}
 					// W
-					if(i > 0 && board[i-1][j])
+					n = (i > 0) ? i-1 : BOARD_WIDTH - 1;
+
+					if(board[n][j])
+					//if(i > 0 && board[i-1][j])
 					{
-						if(!marker[i-1][j])
+						if(!marker[n][j])
 						{
-							marker[i-1][j] = 1;
+							marker[n][j] = 1;
 							repeat = 1;
 						}
 					}

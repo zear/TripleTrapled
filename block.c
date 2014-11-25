@@ -149,8 +149,8 @@ void blockCheckCollision(Block *block)
 	{
 		for(i = 0; i < 2; i++)
 		{
-			order[n].x = ax/BLOCK_SIZE+i;
-			order[n].y = ay/BLOCK_SIZE+j;
+			order[n].x = floor((float)ax/BLOCK_SIZE)+i;
+			order[n].y = floor((float)ay/BLOCK_SIZE)+j;
 			order[n].ax = ax;
 			order[n].ay = ay;
 
@@ -194,6 +194,7 @@ void blockCheckCollision(Block *block)
 
 			float len = sqrt(distX*distX+distY*distY);
 			float len2;
+
 			distX = abs(((order[n].x*BLOCK_SIZE)+BLOCK_SIZE/2 - 1) - (order[n].ax + BLOCK_SIZE/2 - 1));
 			distY = abs(((order[n].y*BLOCK_SIZE)+BLOCK_SIZE/2 - 1) - (order[n].ay + BLOCK_SIZE/2 - 1));
 

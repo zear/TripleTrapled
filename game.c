@@ -46,8 +46,8 @@ void gameLoad()
 	clearedPoints = 0;
 	blockCounter = 1;
 	pointsStrTimer = 0;
-	boardX = SCREEN_W/2 - BOARD_WIDTH/2*BLOCK_SIZE;
-	boardY = SCREEN_H/2 - BOARD_HEIGHT/2*BLOCK_SIZE;
+	boardX = SCREEN_W/2 - (BOARD_WIDTH/2+1)*BLOCK_SIZE;
+	boardY = SCREEN_H/2 - (BOARD_HEIGHT/2+1)*BLOCK_SIZE;
 	boardInit();
 }
 
@@ -171,21 +171,21 @@ void gameLogic()
 		boardX += boardVx;
 		boardY += boardVy;
 
-		if(boardX < -BOARD_WIDTH/2 * BLOCK_SIZE)
+		if(boardX < -(BOARD_WIDTH/2+1) * BLOCK_SIZE)
 		{
-			boardX = -BOARD_WIDTH/2 * BLOCK_SIZE;
+			boardX = -(BOARD_WIDTH/2+1) * BLOCK_SIZE;
 		}
-		if(boardY < -BOARD_HEIGHT/2 * BLOCK_SIZE)
+		if(boardY < -(BOARD_HEIGHT/2+1) * BLOCK_SIZE)
 		{
-			boardY = -BOARD_HEIGHT/2 * BLOCK_SIZE;
+			boardY = -(BOARD_HEIGHT/2+1) * BLOCK_SIZE;
 		}
-		if(boardX > SCREEN_W -BOARD_WIDTH/2 * BLOCK_SIZE - BLOCK_SIZE)
+		if(boardX > SCREEN_W -(BOARD_WIDTH/2+1) * BLOCK_SIZE - BLOCK_SIZE)
 		{
-			boardX = SCREEN_W - BOARD_WIDTH/2 * BLOCK_SIZE - BLOCK_SIZE;
+			boardX = SCREEN_W - (BOARD_WIDTH/2+1) * BLOCK_SIZE - BLOCK_SIZE;
 		}
-		if(boardY > SCREEN_H -BOARD_HEIGHT/2 * BLOCK_SIZE - BLOCK_SIZE)
+		if(boardY > SCREEN_H -(BOARD_HEIGHT/2+1) * BLOCK_SIZE - BLOCK_SIZE)
 		{
-			boardY = SCREEN_H - BOARD_HEIGHT/2 * BLOCK_SIZE - BLOCK_SIZE;
+			boardY = SCREEN_H - (BOARD_HEIGHT/2+1) * BLOCK_SIZE - BLOCK_SIZE;
 		}
 	}
 
