@@ -2,6 +2,7 @@
 
 #include <math.h>
 #include <stdlib.h>
+#include <SDL.h>
 #include "board.h"
 #include "game.h"
 #include "main.h"

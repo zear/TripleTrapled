@@ -8,6 +8,15 @@ ifeq ($(PLATFORM), gcw0)
 	RELEASEDIR	:= release
 endif
 
+ifeq ($(PLATFORM), mingw32)
+	CC		:= i486-mingw32-gcc
+	STRIP		:= i486-mingw32-strip
+	SYSROOT		:= $(shell $(CC) --print-sysroot)
+	CFLAGS		:= -I/usr/i486-mingw32/include -I/usr/i486-mingw32/include/SDL
+	LDFLAGS		:= -lmingw32 -lSDLmain -lSDL -lm -mwindows
+	TARGET		:= tt.exe
+endif
+
 CC		?= gcc
 STRIP		?= strip
 CFLAGS		?= -I/usr/include/SDL
@@ -22,7 +31,7 @@ else
 endif
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ $(LDFLAGS) -o $@
 ifndef DEBUG
 	$(STRIP) $(TARGET)
 endif

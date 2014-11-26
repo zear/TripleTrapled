@@ -49,7 +49,7 @@ int deinit()
 	return 0;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
 	quit = 0;
 
