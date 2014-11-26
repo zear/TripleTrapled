@@ -3,11 +3,7 @@
 
 #include "block.h"
 
-#if defined(DEBUG)
-#define POINTS_INFO_TIMER	1200
-#else
 #define POINTS_INFO_TIMER	120
-#endif
 
 extern int pause;
 extern int over;

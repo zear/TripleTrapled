@@ -3,18 +3,8 @@
 
 #define BLOCK_SIZE		16
 #define EXPLOSION_SPEED		30
-
-#if defined(DEBUG)
-#define BLOCK_BASE_SPEED	0.1
-#else
 #define BLOCK_BASE_SPEED	1.6
-#endif
-
-#if defined(DEBUG)
-#define BLOCK_COUNTER_LIMIT	1200
-#else
 #define BLOCK_COUNTER_LIMIT	120
-#endif
 
 typedef enum Color
 {

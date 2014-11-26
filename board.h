@@ -3,15 +3,10 @@
 
 #include "block.h"
 
-#define BOARD_WIDTH	19 //29
-#define BOARD_HEIGHT	15 //29
-#define BLOCKS_MAX	50
-
-#if defined(DEBUG)
-#define BOARD_SPEED	1
-#else
+#define BOARD_WIDTH	19
+#define BOARD_HEIGHT	15
 #define BOARD_SPEED	3
-#endif
+#define BLOCKS_MAX	50
 
 extern int board[BOARD_WIDTH][BOARD_HEIGHT];
 extern int marker[BOARD_WIDTH][BOARD_HEIGHT];

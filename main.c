@@ -65,12 +65,12 @@ int main()
 
 	while(!quit)
 	{
-#if defined(DEBUG)
-		SDL_Delay(1);
-#endif
-		input();
-		logic();
-		draw();
+		if(!frameLimiter())
+		{
+			input();
+			logic();
+			draw();
+		}
 	}
 
 	storeConfig();
