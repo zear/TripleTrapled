@@ -17,6 +17,9 @@ int init()
 		return -1;
 	}
 
+	SDL_WM_SetCaption("Triple Trapled", NULL);
+	SDL_ShowCursor(SDL_DISABLE);
+
 	screen = SDL_SetVideoMode(SCREEN_W, SCREEN_H, SCREEN_BPP, SDL_HWSURFACE | SDL_DOUBLEBUF);
 
 	if(screen == NULL)
