@@ -8,6 +8,41 @@ Uint32 lastTicks = 0;
 int blinkTimer = 0;
 int blinkTimerSlow = 0;
 
+int initSDL()
+{
+	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_JOYSTICK))
+	{
+		return -1;
+	}
+
+	SDL_WM_SetCaption("Triple Trapled", NULL);
+	SDL_ShowCursor(SDL_DISABLE);
+
+	screen = SDL_SetVideoMode(SCREEN_W, SCREEN_H, SCREEN_BPP, SDL_HWSURFACE | SDL_DOUBLEBUF);
+
+	if(screen == NULL)
+	{
+		return -1;
+	}
+
+	if(SDL_NumJoysticks() > 0)
+	{
+		SDL_JoystickOpen(0);
+	}
+
+	return 0;
+}
+
+void deinitSDL()
+{
+	if(SDL_NumJoysticks() > 0)
+	{
+		SDL_JoystickClose(0);
+	}
+
+	SDL_Quit();
+}
+
 int frameLimiter()
 {
 	int t;

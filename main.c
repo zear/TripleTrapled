@@ -1,6 +1,5 @@
 #include "main.h"
 
-#include <SDL.h>
 #include <stdlib.h>
 #include <time.h>
 #include "fileio.h"
@@ -12,52 +11,28 @@ int quit;
 
 int init()
 {
-	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_JOYSTICK))
+	getConfigDir();
+	getConfig();
+
+	if(initSDL())
 	{
 		return -1;
-	}
-
-	SDL_WM_SetCaption("Triple Trapled", NULL);
-	SDL_ShowCursor(SDL_DISABLE);
-
-	screen = SDL_SetVideoMode(SCREEN_W, SCREEN_H, SCREEN_BPP, SDL_HWSURFACE | SDL_DOUBLEBUF);
-
-	if(screen == NULL)
-	{
-		return -1;
-	}
-
-	if(SDL_NumJoysticks() > 0)
-	{
-		SDL_JoystickOpen(0);
 	}
 
 	return 0;
 }
 
-int deinit()
+void deinit()
 {
-	if(SDL_NumJoysticks() > 0)
-	{
-		SDL_JoystickClose(0);
-	}
-
-	SDL_Quit();
-
 	if(configDir)
 	{
 		free(configDir);
 	}
-
-	return 0;
 }
 
 int main(int argc, char *argv[])
 {
 	quit = 0;
-
-	getConfigDir();
-	getConfig();
 
 	if(init())
 	{
