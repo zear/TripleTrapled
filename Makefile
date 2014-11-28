@@ -19,8 +19,8 @@ endif
 
 CC		?= gcc
 STRIP		?= strip
-CFLAGS		?= -I/usr/include/SDL
-LDFLAGS		?= -lSDL -lm
+CFLAGS		?= $(shell sdl-config --cflags)
+LDFLAGS		?= $(shell sdl-config --libs) -lm
 TARGET		?= tt.elf
 OBJS		:= block.o board.o fileio.o font.o game.o hiscore.o input.o main.o states.o title.o video.o
 
