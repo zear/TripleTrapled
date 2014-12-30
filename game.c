@@ -46,8 +46,8 @@ void gameLoad()
 	clearedPoints = 0;
 	blockCounter = 1;
 	pointsStrTimer = 0;
-	boardX = SCREEN_W/2 - (BOARD_WIDTH/2+1)*BLOCK_SIZE;
-	boardY = SCREEN_H/2 - (BOARD_HEIGHT/2+1)*BLOCK_SIZE;
+	boardX = SCREEN_W/2 - (BOARD_WIDTH/2+1)*BLOCK_SIZE - BLOCK_SIZE/2;
+	boardY = SCREEN_H/2 - (BOARD_HEIGHT/2+1)*BLOCK_SIZE - BLOCK_SIZE/2;
 	boardInit();
 }
 
