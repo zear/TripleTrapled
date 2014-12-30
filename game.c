@@ -81,21 +81,21 @@ void gameLogic()
 	{
 		gameTime++;
 
-		if(!(gameTime % 150)) // Every 5 seconds increase the amount of blocks spawned and the speed of blocks.
+		if(!(gameTime % 300)) // Every 5 seconds increase the amount of blocks spawned and the speed of blocks.
 		{
 			if(--blockSpawnCounterLimit < 30)
 			{
 				blockSpawnCounterLimit = 30;
 			}
 
-			blockSpeed += 0.05;
+			blockSpeed += 0.02;
 
 			if(blockSpeed > BLOCK_BASE_SPEED*2.0)
 			{
 				blockSpeed = BLOCK_BASE_SPEED*2.0;
 			}
 		}
-		if(!(gameTime % (900 * allowedColors - 1))) // Every (15 * [colors in game]) seconds add a new color
+		if(!(gameTime % (1200 * (allowedColors - 1) * (allowedColors - 1)/2))) // Every (20 * [colors in game]*[colors in game]/2) seconds add a new color.
 		{
 			if(++allowedColors > COLOR_NUM - 2)
 			{

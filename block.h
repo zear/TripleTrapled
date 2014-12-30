@@ -4,7 +4,7 @@
 #define BLOCK_SIZE		16
 #define EXPLOSION_SPEED		30
 #define BLOCK_BASE_SPEED	1.6
-#define BLOCK_COUNTER_LIMIT	120
+#define BLOCK_COUNTER_LIMIT	105
 
 typedef enum Color
 {
