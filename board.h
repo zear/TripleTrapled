@@ -3,7 +3,7 @@
 
 #include "block.h"
 
-#define BOARD_WIDTH	19
+#define BOARD_WIDTH	20
 #define BOARD_HEIGHT	15
 #define BOARD_SPEED	3
 #define BLOCKS_MAX	50
