@@ -22,7 +22,10 @@ STRIP		?= strip
 CFLAGS		?= $(shell sdl-config --cflags)
 LDFLAGS		?= $(shell sdl-config --libs) -lm
 TARGET		?= tt.elf
-OBJS		:= block.o board.o fileio.o font.o game.o hiscore.o input.o main.o states.o title.o video.o
+SRCDIR		:= src
+OBJDIR		:= obj
+SRC		:= $(wildcard $(SRCDIR)/*.c)
+OBJ		:= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 ifdef DEBUG
 	CFLAGS	+= -ggdb
@@ -30,11 +33,21 @@ else
 	CFLAGS	+= -O2
 endif
 
-$(TARGET): $(OBJS)
+.PHONY: all opk clean
+
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) $^ $(LDFLAGS) -o $@
 ifndef DEBUG
-	$(STRIP) $(TARGET)
+	$(STRIP) $@
 endif
+
+$(OBJ): $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+	$(CC) -c $(CFLAGS) $< -o $@
+
+$(OBJDIR):
+	mkdir -p $@
 
 opk: $(TARGET)
 ifeq ($(PLATFORM), gcw0)
@@ -47,5 +60,5 @@ ifeq ($(PLATFORM), gcw0)
 endif
 
 clean:
-	rm -Rf $(TARGET) $(OBJS) $(RELEASEDIR)
+	rm -Rf $(TARGET) $(OBJDIR) $(RELEASEDIR)
 
