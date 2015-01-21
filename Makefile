@@ -8,6 +8,16 @@ ifeq ($(PLATFORM), gcw0)
 	RELEASEDIR	:= release
 endif
 
+ifeq ($(PLATFORM), a320)
+	CC		:= /opt/opendingux-toolchain/usr/bin/mipsel-linux-gcc
+	STRIP		:= /opt/opendingux-toolchain/usr/bin/mipsel-linux-strip
+	SYSROOT		:= $(shell $(CC) --print-sysroot)
+	CFLAGS		:= $(shell $(SYSROOT)/usr/bin/sdl-config --cflags)
+	CFLAGS		+= -DNO_FRAMELIMIT
+	LDFLAGS		:= $(shell $(SYSROOT)/usr/bin/sdl-config --libs) -lm
+	TARGET		:= tt.dge
+endif
+
 ifeq ($(PLATFORM), mingw32)
 	CC		:= i486-mingw32-gcc
 	STRIP		:= i486-mingw32-strip
