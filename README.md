@@ -1,6 +1,8 @@
 TripleTrapled
 =============
 
+![screenshot](screenshot.png "Gameplay example")
+
 Triple Trapled is a remake of "Triple Traple" by ABA Games.
 
 * Author: Artur Rojek (zear)
